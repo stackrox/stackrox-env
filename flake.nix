@@ -19,7 +19,7 @@
         pkgs-rocksdb = nixpkgs-rocksdb-6_15_5.legacyPackages.${system};
 
         apps = [ pkgs-oc ];
-        deps = [ pkgs-go.go_1_17 pkgs-rocksdb.rocksdb ];
+        deps = [ pkgs-go.go_1_17 pkgs.jdk11 pkgs-rocksdb.rocksdb ];
         deps-macos =
           if builtins.baseNameOf "${system}" == "darwin"
           then [ pkgs.darwin.apple_sdk.frameworks.Security ]
