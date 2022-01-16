@@ -18,19 +18,37 @@
         pkgs-oc = openshift.defaultPackage.${system};
         pkgs-rocksdb = nixpkgs-rocksdb-6_15_5.legacyPackages.${system};
 
-        apps = [ pkgs-oc ];
-        deps = [ pkgs-go.go_1_17 pkgs.jdk11 pkgs-rocksdb.rocksdb ];
+        deps = [
+          pkgs-go.go_1_17
+          pkgs-rocksdb.rocksdb
+          pkgs.jdk11
+        ];
         deps-macos =
           if builtins.baseNameOf "${system}" == "darwin"
           then [ pkgs.darwin.apple_sdk.frameworks.Security ]
           else [ ];
-        kubernetes = [ pkgs.kubectl pkgs.kubectx pkgs.kubernetes-helm ];
-        ui = [ pkgs.nodejs pkgs.yarn ];
-        utils = [ pkgs.bats pkgs.gcc pkgs.gnumake pkgs.jq pkgs.wget pkgs.yq-go ];
+        kubernetes = [
+          pkgs.kubectl
+          pkgs.kubectx
+          pkgs.kubernetes-helm
+        ];
+        ui = [
+          pkgs.nodejs
+          pkgs.yarn
+        ];
+        utils = [
+          pkgs-oc
+          pkgs.bats
+          pkgs.gcc
+          pkgs.gnumake
+          pkgs.jq
+          pkgs.wget
+          pkgs.yq-go
+        ];
       in
       {
         devShell = pkgs.mkShell {
-          buildInputs = apps ++ deps ++ deps-macos ++ kubernetes ++ ui ++ utils;
+          buildInputs = deps ++ deps-macos ++ kubernetes ++ ui ++ utils;
         };
       }
     );
