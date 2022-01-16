@@ -77,25 +77,12 @@
         "type": "github"
       }
     },
-    "nixpkgs_2": {
-      "locked": {
-        "lastModified": 1642340803,
-        "narHash": "sha256-OznBJUH9cxviTfIv1K0EV5n3H8ImcCapkC5GsPDgXd0=",
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "rev": "38afc892b1bc190d9fd6b8f6c672b4aee1c4483c",
-        "type": "github"
-      },
-      "original": {
-        "owner": "nixos",
-        "repo": "nixpkgs",
-        "type": "github"
-      }
-    },
     "openshift": {
       "inputs": {
         "flake-utils": "flake-utils_2",
-        "nixpkgs": "nixpkgs_2"
+        "nixpkgs": [
+          "nixpkgs"
+        ]
       },
       "locked": {
         "lastModified": 1642344699,
