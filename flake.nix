@@ -24,7 +24,7 @@
           pkgs.jdk11
         ];
         deps-macos =
-          if builtins.baseNameOf "${system}" == "darwin"
+          if builtins.elem "${system}" pkgs.lib.platforms.darwin
           then [ pkgs.darwin.apple_sdk.frameworks.Security ]
           else [ ];
         kubernetes = [
