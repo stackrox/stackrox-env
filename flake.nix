@@ -18,14 +18,18 @@
         pkgs-rocksdb = nixpkgs-rocksdb-6_15_5.legacyPackages.${system};
 
         apps = [ pkgs-oc ];
-        deps = [ pkgs.darwin.apple_sdk.frameworks.Security pkgs-go.go_1_17 pkgs-rocksdb.rocksdb ];
+        deps = [ pkgs-go.go_1_17 pkgs-rocksdb.rocksdb ];
         kubernetes = [ pkgs.kubectl pkgs.kubectx pkgs.kubernetes-helm ];
+        macos_deps =
+          if builtins.baseNameOf "${system}" == "darwin"
+          then [ pkgs.darwin.apple_sdk.frameworks.Security ]
+          else [ ];
         ui = [ pkgs.nodejs pkgs.yarn ];
         utils = [ pkgs.bats pkgs.gcc pkgs.gnumake pkgs.jq pkgs.wget pkgs.yq-go ];
       in
       {
         devShell = pkgs.mkShell {
-          buildInputs = apps ++ deps ++ kubernetes ++ ui ++ utils;
+          buildInputs = apps ++ deps ++ kubernetes ++ macos_deps ++ ui ++ utils;
         };
       }
     );

@@ -1,5 +1,13 @@
 # Stackrox development environment
 
+## Usage
+
+Run the following command inside of the cloned repository:
+
+```sh
+nix develop -c $SHELL
+```
+
 ## Direnv integration
 
 * Install [Direnv with Nix flake integration](https://github.com/nix-community/nix-direnv).
