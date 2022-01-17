@@ -54,3 +54,7 @@ on all platforms.
 Loading the development environment inserts the `Nix` binaries at the beginning of `$PATH`.
 If `$PATH` is later overwritten by another process, the isolation breaks and global version
 of binaries could be first in `$PATH`.
+
+I have not included `docker` in the build environment because at least on macOS `Docker Desktop`
+is not open sourced. I'll look into replacing it with a different local Kubernetes like `minikube`
+at some point.
