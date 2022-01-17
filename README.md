@@ -1,5 +1,33 @@
 # Stackrox development environment
 
+Isolated and reproducible development environment for the Stackrox stack using Nix flakes.
+
+## Environment
+
+Runtimes:
+
+* `golang 1.17.3`
+* `openjdk 11`
+
+Libraries:
+
+* `rocksdb 6.15.5`
+
+Applications:
+
+* `bats`
+* `gcc`
+* `gnumake`
+* `helm`
+* `jq`
+* `kubectl`
+* `kubectx`
+* `nodejs`
+* `oc`
+* `wget`
+* `yarn`
+* `yq`
+
 ## Usage
 
 - Install `Nix` by following the [instructions](https://nixos.org/manual/nix/stable/installation/installing-binary.html) based on your platform.
@@ -10,3 +38,14 @@
 
 - Install [Direnv with Nix flake integration](https://github.com/nix-community/nix-direnv).
 - Add `use flake ~/dev/nix/stackrox/` to the `.envrc` file inside the `stackrox/stackrox` directory.
+
+## Platforms
+
+The Nix flake should work on Linux and macOS (Intel + M1). Although I have only tested on
+my local machine (Intel macOS Monterey).
+
+## Caveats
+
+Loading the development environment inserts the `Nix` binaries at the beginning of `$PATH`.
+If `$PATH` is later overwritten by another process, the isolation breaks and global version
+of binaries could be first in `$PATH`.
