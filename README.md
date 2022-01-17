@@ -41,8 +41,13 @@ Applications:
 
 ## Platforms
 
-The Nix flake should work on Linux and macOS (Intel + M1). Although I have only tested on
+The Nix flake should work (in theory) on Linux and macOS (Intel + M1). Although I have only tested on
 my local machine (Intel macOS Monterey).
+
+Nix injects a base build environment that depends on the platform (e.g. `x86_64-linux`, `x86_64-darwin`).
+This means that build environments are only reproducible modulo the platform on which derivations
+are evaluated. Sadly the Nix project lacks the man power to verify that all packages build successfully
+on all platforms.
 
 ## Caveats
 
