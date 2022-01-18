@@ -34,10 +34,14 @@ Applications:
 - Install `Nix` by following the [instructions](https://nixos.org/manual/nix/stable/installation/installing-binary.html) based on your platform.
 - Run `nix develop github:stehessel/stackrox-env -c $SHELL` to open a shell with the development environment.
 
+Alernatively, clone the `stehessel/stackrox-env` repository and execute `nix develop -c $SHELL` from inside the directory.
+
 ## Direnv integration
 
 - Install [Direnv with Nix flake integration](https://github.com/nix-community/nix-direnv).
 - Create a `.envrc` file inside the `stackrox/stackrox` directory and add `use flake github:stehessel/stackrox-env` to it.
+
+Alernatively, clone the `stehessel/stackrox-env` repository and add `use flake ~/dev/nix/stackrox/` to `.envrc`.
 
 ## Platforms
 
