@@ -18,6 +18,7 @@ Applications:
 * `bats`
 * `gcc`
 * `gnumake`
+* `gradle`
 * `helm`
 * `jq`
 * `kubectl`

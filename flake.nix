@@ -23,6 +23,7 @@
           pkgs.bats
           pkgs.gcc
           pkgs.gnumake
+          pkgs.gradle
           pkgs.jq
           pkgs.kubectl
           pkgs.kubectx
