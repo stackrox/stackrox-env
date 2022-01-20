@@ -17,7 +17,6 @@
         pkgs-rocksdb = nixpkgs-rocksdb-6_15_5.legacyPackages.${system};
 
         cli = [
-          pkgs-oc
           pkgs.bats
           pkgs.gcc
           pkgs.gnumake
@@ -34,9 +33,13 @@
           pkgs-rocksdb.rocksdb
           pkgs.jdk11
         ];
+        deps-linux =
+          if builtins.elem "${system}" pkgs.lib.platforms.linux
+          then [ pkgs.openshift ]
+          else [ ];
         deps-macos =
           if builtins.elem "${system}" pkgs.lib.platforms.darwin
-          then [ pkgs.darwin.apple_sdk.frameworks.Security ]
+          then [ pkgs-oc pkgs.darwin.apple_sdk.frameworks.Security ]
           else [ ];
         ui = [
           pkgs.nodejs
@@ -45,7 +48,7 @@
       in
       {
         devShell = pkgs.mkShell {
-          buildInputs = cli ++ deps ++ deps-macos ++ ui;
+          buildInputs = cli ++ deps ++ deps-linux ++ deps-macos ++ ui;
         };
       }
     );
