@@ -33,11 +33,11 @@
           pkgs-rocksdb.rocksdb
           pkgs.jdk11
         ];
-        deps-linux =
+        linux =
           if builtins.elem "${system}" pkgs.lib.platforms.linux
           then [ pkgs.openshift ]
           else [ ];
-        deps-macos =
+        macos =
           if builtins.elem "${system}" pkgs.lib.platforms.darwin
           then [ pkgs-oc pkgs.darwin.apple_sdk.frameworks.Security ]
           else [ ];
@@ -48,7 +48,7 @@
       in
       {
         devShell = pkgs.mkShell {
-          buildInputs = cli ++ deps ++ deps-linux ++ deps-macos ++ ui;
+          buildInputs = cli ++ deps ++ linux ++ macos ++ ui;
         };
       }
     );
