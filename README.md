@@ -17,14 +17,15 @@ Applications:
 
 * `bats`
 * `gcc`
-* `gnumake`
+* `gcloud`
 * `gradle`
 * `helm`
 * `jq`
 * `kubectl`
 * `kubectx`
+* `make`
 * `nodejs`
-* `oc`
+* `openshift` / `oc`
 * `wget`
 * `yarn`
 * `yq`

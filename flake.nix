@@ -35,6 +35,7 @@
           pkgs.gcc
           pkgs.gnumake
           pkgs.go_1_17
+          pkgs.google-cloud-sdk
           pkgs.gradle
           pkgs.jdk11
           pkgs.jq
