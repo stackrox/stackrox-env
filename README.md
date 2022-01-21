@@ -33,6 +33,7 @@ Applications:
 ## Usage
 
 - Install `Nix` by following the [instructions](https://nixos.org/manual/nix/stable/installation/installing-binary.html) based on your platform.
+- Enable experimental features to use flakes. Add `experimental-features = nix-command flakes` to `$HOME/.config/nix/nix.conf`.
 - Run `nix develop github:stehessel/stackrox-env -c $SHELL` to open a shell with the development environment.
 
 Alernatively, clone the `stehessel/stackrox-env` repository and execute `nix develop -c $SHELL` from inside the directory.
