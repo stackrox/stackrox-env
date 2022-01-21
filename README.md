@@ -6,7 +6,7 @@ Isolated and reproducible development environment for the Stackrox stack using N
 
 Runtimes:
 
-* `golang 1.17.3`
+* `golang 1.17.x`
 * `openjdk 11`
 
 Libraries:
