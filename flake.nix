@@ -28,34 +28,30 @@
               else [ ];
           };
         pkgs-rocksdb = import nixpkgs-rocksdb-6_15_5 { inherit system; };
-
-        common = [
-          pkgs-rocksdb.rocksdb
-          pkgs.bats
-          pkgs.gcc
-          pkgs.gnumake
-          pkgs.go_1_17
-          pkgs.google-cloud-sdk
-          pkgs.gradle
-          pkgs.jdk11
-          pkgs.jq
-          pkgs.kubectl
-          pkgs.kubectx
-          pkgs.kubernetes-helm
-          pkgs.nodejs
-          pkgs.openshift
-          pkgs.wget
-          pkgs.yarn
-          pkgs.yq-go
-        ];
-        darwin =
-          if builtins.elem "${system}" pkgs.lib.platforms.darwin
-          then [ pkgs.darwin.apple_sdk.frameworks.Security ]
-          else [ ];
       in
       {
         devShell = pkgs.mkShell {
-          buildInputs = common ++ darwin;
+          buildInputs = [
+            pkgs-rocksdb.rocksdb
+            pkgs.bats
+            pkgs.gcc
+            pkgs.gnumake
+            pkgs.go_1_17
+            pkgs.google-cloud-sdk
+            pkgs.gradle
+            pkgs.jdk11
+            pkgs.jq
+            pkgs.kubectl
+            pkgs.kubectx
+            pkgs.kubernetes-helm
+            pkgs.nodejs
+            pkgs.openshift
+            pkgs.wget
+            pkgs.yarn
+            pkgs.yq-go
+          ] ++ pkgs.lib.optionals pkgs.stdenv.isDarwin [
+            pkgs.darwin.apple_sdk.frameworks.Security
+          ];
         };
       }
     );
