@@ -20,11 +20,8 @@
           };
         pkgs = import nixpkgs {
           inherit system;
-          overlays =
-            if builtins.elem "${system}" nixpkgs.lib.platforms.darwin
-            then
-              [ openshift-overlay ]
-            else [ ];
+          overlays = nixpkgs.lib.optionals
+            nixpkgs.legacyPackages."${system}".stdenv.isDarwin [ openshift-overlay ];
         };
         pkgs-rocksdb = import nixpkgs-rocksdb-6_15_5 { inherit system; };
       in
@@ -48,8 +45,6 @@
             pkgs.wget
             pkgs.yarn
             pkgs.yq-go
-          ] ++ pkgs.lib.optionals pkgs.stdenv.isDarwin [
-            pkgs.darwin.apple_sdk.frameworks.Security
           ];
         };
       }
