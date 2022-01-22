@@ -18,15 +18,14 @@
               }
             );
           };
-        pkgs = import nixpkgs
-          {
-            inherit system;
-            overlays =
-              if builtins.elem "${system}" nixpkgs.lib.platforms.darwin
-              then
-                [ openshift-overlay ]
-              else [ ];
-          };
+        pkgs = import nixpkgs {
+          inherit system;
+          overlays =
+            if builtins.elem "${system}" nixpkgs.lib.platforms.darwin
+            then
+              [ openshift-overlay ]
+            else [ ];
+        };
         pkgs-rocksdb = import nixpkgs-rocksdb-6_15_5 { inherit system; };
       in
       {
