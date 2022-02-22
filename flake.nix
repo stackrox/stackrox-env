@@ -10,14 +10,13 @@
   outputs = { self, nixpkgs, nixpkgs-rocksdb-6_15_5, flake-utils }:
     flake-utils.lib.eachDefaultSystem (system:
       let
-        openshift-overlay =
-          prev: final: {
-            openshift = final.openshift.overrideAttrs (
-              prev: {
-                nativeBuildInputs = prev.nativeBuildInputs ++ [ final.ncurses ];
-              }
-            );
-          };
+        openshift-overlay = prev: final: {
+          openshift = final.openshift.overrideAttrs (
+            prev: {
+              nativeBuildInputs = prev.nativeBuildInputs ++ [ final.ncurses ];
+            }
+          );
+        };
         pkgs = import nixpkgs {
           inherit system;
           overlays = nixpkgs.lib.optionals
