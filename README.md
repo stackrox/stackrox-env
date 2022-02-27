@@ -1,5 +1,7 @@
 # Stackrox development environment
 
+[![](http://github-actions.40ants.com/stehessel/stackrox-env/matrix.svg)](https://github.com/stehessel/stackrox-env)
+
 Isolated and reproducible development environment for the Stackrox stack using Nix flakes.
 
 ## Environment
