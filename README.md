@@ -38,24 +38,21 @@ Applications:
 - Enable experimental features to use flakes. Add `experimental-features = nix-command flakes` to `$HOME/.config/nix/nix.conf`.
 - Run `nix develop github:stehessel/stackrox-env -c $SHELL` to open a shell with the development environment.
 
-Alernatively, clone the `stehessel/stackrox-env` repository and execute `nix develop -c $SHELL` from inside the directory.
+Alernatively, clone the `stehessel/stackrox-env` repository `git clone git@github.com:stehessel/stackrox-env.git ~/dev/nix/stackrox`
+and execute `nix develop ~/dev/nix/stackrox -c $SHELL`.
 
 ## Direnv integration
 
 - Install [Direnv with Nix flake integration](https://github.com/nix-community/nix-direnv).
 - Create a `.envrc` file inside the `stackrox/stackrox` directory and add `use flake github:stehessel/stackrox-env` to it.
 
-Alernatively, clone the `stehessel/stackrox-env` repository and add `use flake ~/dev/nix/stackrox/` to `.envrc`.
+Alernatively, clone the `stehessel/stackrox-env` repository `git clone git@github.com:stehessel/stackrox-env.git ~/dev/nix/stackrox`
+and add `use flake ~/dev/nix/stackrox/` to `.envrc`.
 
 ## Platforms
 
-The Nix flake should work (in theory) on Linux and macOS (Intel + M1). Although I have only tested on
-my local machine (Intel macOS Monterey).
-
-Nix injects a base build environment that depends on the platform (e.g. `x86_64-linux`, `x86_64-darwin`).
-This means that build environments are only reproducible modulo the platform on which derivations
-are evaluated. Sadly the Nix project lacks the man power to verify that all packages build successfully
-on all platforms.
+The Nix flake is tested via continuous integration on Linux and macOS (Intel). Unfortunately, GitHub does not provide
+macOS ARM runners, but the flake should build on M1 machines as well. If not, please let me know.
 
 ## Caveats
 
@@ -64,5 +61,4 @@ If `$PATH` is later overwritten by another process, the isolation breaks and glo
 of binaries could be first in `$PATH`.
 
 I have not included `docker` in the build environment because at least on macOS `Docker Desktop`
-is not open sourced. I'll look into replacing it with a different local Kubernetes like `minikube`
-at some point.
+is not open sourced.
