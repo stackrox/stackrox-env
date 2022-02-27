@@ -1,4 +1,4 @@
-name: "flake test"
+name: "Build"
 on:
   push:
     branches:
@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  tests:
+  build:
     strategy:
       matrix:
         os: [macos-latest, ubuntu-latest]
