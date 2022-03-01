@@ -40,10 +40,10 @@ Applications:
 
 ## Usage
 
-Run `nix develop github:stehessel/stackrox-env -c $SHELL` to open a shell with the development environment based on the
-latest upstream state. Alternatively, open a shell based on a local clone of the repository
-`nix develop ~/dev/nix/stackrox -c $SHELL`. This allows for more fine grained control, but requires manual updates from
-time to time by pulling the latest master.
+Run `nix --experimental-features "nix-command flakes" develop github:stehessel/stackrox-env -c $SHELL` to open a shell
+with the development environment based on the latest upstream state. Alternatively, open a shell based on a local clone
+of the repository `nix --experimental-features "nix-command flakes" develop ~/dev/nix/stackrox -c $SHELL`. This allows
+for more fine grained control, but requires manual updates from time to time by pulling the latest master.
 
 ## Login shell
 
