@@ -32,22 +32,37 @@ Applications:
 * `yarn`
 * `yq`
 
+## Prerequisites
+
+- Install `Nix` by following the [instructions](https://nixos.org/manual/nix/stable/installation/installing-binary.html)
+  based on your platform.
+- **(Optional)** Clone the repository `git clone git@github.com:stehessel/stackrox-env.git ~/dev/nix/stackrox`.
+
 ## Usage
 
-- Install `Nix` by following the [instructions](https://nixos.org/manual/nix/stable/installation/installing-binary.html) based on your platform.
-- Enable experimental features to use flakes. Add `experimental-features = nix-command flakes` to `$HOME/.config/nix/nix.conf`.
-- Run `nix develop github:stehessel/stackrox-env -c $SHELL` to open a shell with the development environment.
+Run `nix develop github:stehessel/stackrox-env -c $SHELL` to open a shell with the development environment based on the
+latest upstream state. Alternatively, open a shell based on a local clone of the repository
+`nix develop ~/dev/nix/stackrox -c $SHELL`. This allows for more fine grained control, but requires manual updates from
+time to time by pulling the latest master.
 
-Alernatively, clone the `stehessel/stackrox-env` repository `git clone git@github.com:stehessel/stackrox-env.git ~/dev/nix/stackrox`
-and execute `nix develop ~/dev/nix/stackrox -c $SHELL`.
+## Login shell
+
+You may choose to load the development environment inside the login shell. This effectively means that the development
+environment will be available in every shell, which is convenient when no other environments are used anyway. Modifying
+the login shell is recommended when working with graphical IDEs such as GoLand and VSCode.
+
+- Clone the repository as outlined above.
+- Add `source ~/dev/nix/stackrox/login.sh` to either `~/.bash_profile.sh` (bash) or `~/.zprofile` (zsh).
 
 ## Direnv integration
 
+`Direnv` allows you to automatically modify the shell environment when entering a directory. This can be used to load the
+development environment upon entering the `stackrox/stackrox` repository. It is the recommended usage when working primarily
+from the command line.
+
 - Install [Direnv with Nix flake integration](https://github.com/nix-community/nix-direnv).
 - Create a `.envrc` file inside the `stackrox/stackrox` directory and add `use flake github:stehessel/stackrox-env` to it.
-
-Alernatively, clone the `stehessel/stackrox-env` repository `git clone git@github.com:stehessel/stackrox-env.git ~/dev/nix/stackrox`
-and add `use flake ~/dev/nix/stackrox/` to `.envrc`.
+  Alternatively, add `use flake ~/dev/nix/stackrox/` to use a local clone of the repository.
 
 ## Platforms
 
