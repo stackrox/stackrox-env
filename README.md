@@ -40,12 +40,14 @@ Applications:
 
 ## Usage
 
+### Ad-hoc shell
+
 Run `nix --experimental-features "nix-command flakes" develop github:stehessel/stackrox-env -c $SHELL` to open a shell
 with the development environment based on the latest upstream state. Alternatively, open a shell based on a local clone
 of the repository `nix --experimental-features "nix-command flakes" develop ~/dev/nix/stackrox -c $SHELL`. This allows
 for more fine grained control, but requires manual updates from time to time by pulling the latest master.
 
-## Login shell
+### Login shell
 
 You may choose to load the development environment inside the login shell. This effectively means that the development
 environment will be available in every shell, which is convenient when no other environments are used anyway. Modifying
@@ -54,7 +56,16 @@ the login shell is recommended when working with graphical IDEs such as GoLand a
 - Clone the repository as outlined above.
 - Add `source ~/dev/nix/stackrox/login.sh` to either `~/.bash_profile.sh` (bash) or `~/.zprofile` (zsh).
 
-## Direnv integration
+Note you should source `login.sh` after the lines added by the Nix installer, but before setting up the Stackrox workflow
+tools (if you use them) via
+
+```sh
+export GOPATH=$HOME/go
+export PATH=$PATH:$GOPATH/bin
+source "$HOME/go/src/github.com/stackrox/workflow/env.sh"
+```
+
+### Direnv integration
 
 `Direnv` allows you to automatically modify the shell environment when entering a directory. This can be used to load the
 development environment upon entering the `stackrox/stackrox` repository. It is the recommended usage when working primarily
