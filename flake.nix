@@ -30,6 +30,7 @@
             pkgs.kubernetes-helm
             pkgs.nodejs
             pkgs.openshift
+            pkgs.python3
             pkgs.wget
             pkgs.yarn
             pkgs.yq-go

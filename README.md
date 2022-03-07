@@ -10,6 +10,7 @@ Runtimes:
 
 * `golang 1.17.x`
 * `openjdk 11`
+* `python 3.9`
 
 Libraries:
 
