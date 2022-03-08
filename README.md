@@ -6,7 +6,7 @@ Isolated and reproducible development environment for the Stackrox stack using N
 
 ## Environment
 
-Runtimes:
+Compilers / runtimes:
 
 * `golang 1.17.x`
 * `openjdk 11`
