@@ -19,6 +19,8 @@ Libraries:
 Applications:
 
 * `bats`
+* `colima` (macOS)
+* `docker` (macOS)
 * `gcc`
 * `gcloud`
 * `gradle`
@@ -81,11 +83,38 @@ from the command line.
 The Nix flake is tested via continuous integration on Linux and macOS (Intel). Unfortunately, GitHub does not provide
 macOS ARM runners, but the flake should build on M1 machines as well. If not, please let me know.
 
+## Docker on macOS
+
+[`colima`](https://github.com/abiosoft/colima) manages a virtual machine, in which the `docker` daemon runs natively.
+The `docker` context in the macOS host system is then set to the damon inside the virtual machine. This setup functions
+similarly to `Docker Desktop` and may be used as a drop-in replacement.
+
+Setup a virtual machine with 2 CPUs, 2 GiB of memory and 60 GiB of storage:
+
+```sh
+colima start --cpu 2 --memory 2 --disk 60
+```
+
+Change the resources of the virtual machine:
+
+```sh
+colima stop
+colima start --cpu 4 --memory 8 --disk 60
+```
+
+Verify that the `colima` context is used by the `docker` client:
+```sh
+docker context list
+```
+
+Deploy a local Kubernetes cluster with access to images built or pulled with `docker`:
+
+```sh
+colima start --with-kubernetes
+```
+
 ## Caveats
 
 Loading the development environment inserts the `Nix` binaries at the beginning of `$PATH`.
 If `$PATH` is later overwritten by another process, the isolation breaks and global version
 of binaries could be first in `$PATH`.
-
-I have not included `docker` in the build environment because at least on macOS `Docker Desktop`
-is not open sourced.
