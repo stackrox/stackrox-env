@@ -28,7 +28,8 @@ Applications:
 * `kubectx`
 * `make`
 * `nodejs`
-* `openshift` / `oc`
+* OpenShift Client `oc`
+* OpenShift Cluster Manager Client `ocm`
 * `wget`
 * `yarn`
 * `yq`

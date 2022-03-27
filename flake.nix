@@ -29,6 +29,7 @@
             pkgs.kubectx
             pkgs.kubernetes-helm
             pkgs.nodejs
+            pkgs.ocm
             pkgs.openshift
             pkgs.python3
             pkgs.wget
