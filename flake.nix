@@ -12,6 +12,13 @@
       let
         pkgs = import nixpkgs { inherit system; };
         pkgs-rocksdb = import nixpkgs-rocksdb-6_15_5 { inherit system; };
+        darwin-pkgs =
+          if pkgs.stdenv.isDarwin then
+            [
+              pkgs.colima
+              pkgs.docker
+            ]
+          else [ ];
       in
       {
         devShell = pkgs.mkShell {
@@ -34,7 +41,7 @@
             pkgs.wget
             pkgs.yarn
             pkgs.yq-go
-          ];
+          ] ++ darwin-pkgs;
         };
       }
     );
