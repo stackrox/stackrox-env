@@ -1,6 +1,6 @@
 # Stackrox development environment
 
-[![](http://github-actions.40ants.com/stehessel/stackrox-env/matrix.svg)](https://github.com/stehessel/stackrox-env)
+[![](http://github-actions.40ants.com/stackrox/stackrox-env/matrix.svg)](https://github.com/stackrox/stackrox-env)
 
 Isolated and reproducible development environment for the Stackrox stack using Nix flakes.
 
@@ -40,13 +40,13 @@ Applications:
 
 - Install `Nix` by following the [instructions](https://nixos.org/manual/nix/stable/installation/installing-binary.html)
   based on your platform.
-- **(Optional)** Clone the repository `git clone git@github.com:stehessel/stackrox-env.git ~/dev/nix/stackrox`.
+- **(Optional)** Clone the repository `git clone git@github.com:stackrox/stackrox-env.git ~/dev/nix/stackrox`.
 
 ## Usage
 
 ### Ad-hoc shell
 
-Run `nix --experimental-features "nix-command flakes" develop github:stehessel/stackrox-env -c $SHELL` to open a shell
+Run `nix --experimental-features "nix-command flakes" develop github:stackrox/stackrox-env -c $SHELL` to open a shell
 with the development environment based on the latest upstream state. Alternatively, open a shell based on a local clone
 of the repository `nix --experimental-features "nix-command flakes" develop ~/dev/nix/stackrox -c $SHELL`. This allows
 for more fine grained control, but requires manual updates from time to time by pulling the latest master.
@@ -76,7 +76,7 @@ development environment upon entering the `stackrox/stackrox` repository. It is 
 from the command line.
 
 - Install [Direnv with Nix flake integration](https://github.com/nix-community/nix-direnv).
-- Create a `.envrc` file inside the `stackrox/stackrox` directory and add `use flake github:stehessel/stackrox-env` to it.
+- Create a `.envrc` file inside the `stackrox/stackrox` directory and add `use flake github:stackrox/stackrox-env` to it.
   Alternatively, add `use flake ~/dev/nix/stackrox/` to use a local clone of the repository.
 
 ## Platforms
