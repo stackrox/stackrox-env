@@ -26,6 +26,7 @@
             pkgs-rocksdb.rocksdb
             pkgs.bats
             pkgs.gcc
+            pkgs.gettext  # Needed for `envsubst`
             pkgs.gnumake
             pkgs.go_1_17
             pkgs.google-cloud-sdk
