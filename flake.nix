@@ -13,11 +13,10 @@
         pkgs = import nixpkgs { inherit system; };
         pkgs-rocksdb = import nixpkgs-rocksdb-6_15_5 { inherit system; };
         darwin-pkgs =
-          if pkgs.stdenv.isDarwin then
-            [
-              pkgs.colima
-              pkgs.docker
-            ]
+          if pkgs.stdenv.isDarwin then [
+            pkgs.colima
+            pkgs.docker
+          ]
           else [ ];
       in
       {
@@ -26,7 +25,7 @@
             pkgs-rocksdb.rocksdb
             pkgs.bats
             pkgs.gcc
-            pkgs.gettext  # Needed for `envsubst`
+            pkgs.gettext # Needed for `envsubst`
             pkgs.gnumake
             pkgs.go_1_17
             pkgs.google-cloud-sdk
