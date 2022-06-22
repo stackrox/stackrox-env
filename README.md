@@ -119,3 +119,9 @@ colima start --with-kubernetes
 Loading the development environment inserts the `Nix` binaries at the beginning of `$PATH`.
 If `$PATH` is later overwritten by another process, the isolation breaks and global version
 of binaries could be first in `$PATH`.
+
+## Contributing
+
+### Pre-commit hook
+
+To install the pre-commit hook, run `pre-commit install` from within the repository.
