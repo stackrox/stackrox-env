@@ -43,6 +43,7 @@
             pkgs.nodejs
             pkgs.ocm
             pkgs.openshift
+            pkgs.pre-commit
             pkgs.wget
             pkgs.yarn
             pkgs.yq-go
