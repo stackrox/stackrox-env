@@ -18,6 +18,11 @@
             pkgs.docker
           ]
           else [ ];
+        # Add Python packages here.
+        python-packages = ps: [
+          ps.pyyaml
+        ];
+        stackrox-python = pkgs.python3.withPackages python-packages;
       in
       {
         devShell = pkgs.mkShell {
@@ -38,10 +43,10 @@
             pkgs.nodejs
             pkgs.ocm
             pkgs.openshift
-            pkgs.python3
             pkgs.wget
             pkgs.yarn
             pkgs.yq-go
+            stackrox-python
           ] ++ darwin-pkgs;
         };
       }
