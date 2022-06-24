@@ -29,6 +29,7 @@
           buildInputs = [
             pkgs-rocksdb.rocksdb
             pkgs.bats
+            pkgs.bfg-repo-cleaner
             pkgs.gcc
             pkgs.gettext # Needed for `envsubst`
             pkgs.gnumake
