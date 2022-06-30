@@ -19,6 +19,7 @@ Libraries:
 Applications:
 
 * `bats`
+* Repo cleaner `bfg`
 * `colima` (macOS)
 * `docker` (macOS)
 * `gcc`
