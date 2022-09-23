@@ -33,7 +33,7 @@
             pkgs.gcc
             pkgs.gettext # Needed for `envsubst`
             pkgs.gnumake
-            pkgs.go_1_17
+            pkgs.go_1_18
             pkgs.google-cloud-sdk
             pkgs.gradle
             pkgs.jdk11
