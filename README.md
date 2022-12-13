@@ -10,7 +10,7 @@ Compilers / runtimes:
 
 * `golang 1.18.x`
 * `openjdk 11`
-* `python 3.9`
+* `python 3.10`
 
 Libraries:
 
@@ -18,8 +18,10 @@ Libraries:
 
 Applications:
 
+* `aws` and `aws-vault`
 * `bats`
 * Repo cleaner `bfg`
+* `chamber`
 * `colima` (macOS)
 * `docker` (macOS)
 * `gcc`
