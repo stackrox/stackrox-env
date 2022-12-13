@@ -14,11 +14,17 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
-    - name: Check out repository
-      uses: actions/checkout@v2.4.0
+      - name: Check out repository
+        uses: actions/checkout@v2.4.0
 
-    - name: Install Nix
-      uses: cachix/install-nix-action@v16
+      - name: Install Nix
+        uses: cachix/install-nix-action@v16
 
-    - name: Build dev environment
-      run: nix develop
+      - name: Setup binary cache
+        uses: cachix/cachix-action@v12
+        with:
+          name: stackrox
+          authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
+
+      - name: Build dev environment
+        run: nix develop
