@@ -20,6 +20,7 @@
           else [ ];
         # Add Python packages here.
         python-packages = ps: [
+          ps.python-ldap # Dependency of aws-saml.py
           ps.pyyaml
         ];
         stackrox-python = pkgs.python3.withPackages python-packages;
@@ -27,27 +28,38 @@
       {
         devShell = pkgs.mkShell {
           buildInputs = [
+            # stackrox/stackrox
             pkgs-rocksdb.rocksdb
             pkgs.bats
-            pkgs.bfg-repo-cleaner
-            pkgs.cachix
-            pkgs.gcc
             pkgs.gettext # Needed for `envsubst`
-            pkgs.gnumake
-            pkgs.go_1_18
             pkgs.google-cloud-sdk
             pkgs.gradle
             pkgs.jdk11
+            pkgs.nodejs
+            pkgs.yarn
+
+            # stackrox/acs-fleet-manager
+            pkgs.aws-vault
+            pkgs.awscli2
+            pkgs.chamber
+            pkgs.krb5 # Dependency of aws-saml.py
+            pkgs.pre-commit
+
+            # openshift
+            pkgs.ocm
+            pkgs.openshift
+
+            # misc
+            pkgs.bfg-repo-cleaner
+            pkgs.cachix
+            pkgs.gcc
+            pkgs.gnumake
+            pkgs.go_1_18
             pkgs.jq
             pkgs.kubectl
             pkgs.kubectx
             pkgs.kubernetes-helm
-            pkgs.nodejs
-            pkgs.ocm
-            pkgs.openshift
-            pkgs.pre-commit
             pkgs.wget
-            pkgs.yarn
             pkgs.yq-go
             stackrox-python
           ] ++ darwin-pkgs;
