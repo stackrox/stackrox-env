@@ -115,6 +115,25 @@ Deploy a local Kubernetes cluster with access to images built or pulled with `do
 colima start --with-kubernetes
 ```
 
+## Binary cache
+
+To avoid long build times, all packages can be pulled from a binary cache. The `build` GitHub action builds
+all packages and pushes them to the binary cache `stackrox.cachix.org`. Using the binary cache is optional.
+See this [guide](https://nix.dev/faq#how-do-i-add-a-new-binary-cache) on how to enable the cache.
+
+```
+trusted-substituter: https://stackrox.cachix.org
+trusted-public-key: stackrox.cachix.org-1:Wnn8TKAitOTWKfTvvHiHzJjXy0YfiwoK6rrVzXt/trA=
+```
+
+Alternativley, run
+
+```sh
+cachix use stackrox
+```
+
+which modifies the Nix system config as described above.
+
 ## Caveats
 
 Loading the development environment inserts the `Nix` binaries at the beginning of `$PATH`.

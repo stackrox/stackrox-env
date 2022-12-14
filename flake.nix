@@ -30,6 +30,7 @@
             pkgs-rocksdb.rocksdb
             pkgs.bats
             pkgs.bfg-repo-cleaner
+            pkgs.cachix
             pkgs.gcc
             pkgs.gettext # Needed for `envsubst`
             pkgs.gnumake
