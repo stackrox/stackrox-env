@@ -51,6 +51,7 @@
 
             # misc
             pkgs.bfg-repo-cleaner
+            pkgs.bitwarden-cli
             pkgs.cachix
             pkgs.gcc
             pkgs.gnumake
@@ -59,6 +60,7 @@
             pkgs.kubectl
             pkgs.kubectx
             pkgs.kubernetes-helm
+            pkgs.vault
             pkgs.wget
             pkgs.yq-go
             stackrox-python
