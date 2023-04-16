@@ -1,6 +1,11 @@
 {
   description = "Stackrox development environment";
 
+  nixConfig = {
+    substituters = [ "https://stackrox.cachix.org" ];
+    trusted-public-keys = [ "stackrox.cachix.org-1:Wnn8TKAitOTWKfTvvHiHzJjXy0YfiwoK6rrVzXt/trA=" ];
+  };
+
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs";
     nixpkgs-rocksdb-6_15_5.url = "github:nixos/nixpkgs/a765beccb52f30a30fee313fbae483693ffe200d";
