@@ -55,7 +55,7 @@
             pkgs.cachix
             pkgs.gcc
             pkgs.gnumake
-            pkgs.go_1_19
+            pkgs.go_1_20
             pkgs.jq
             pkgs.kubectl
             pkgs.kubectx

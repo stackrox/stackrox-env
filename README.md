@@ -8,7 +8,7 @@ Isolated and reproducible development environment for the Stackrox stack using N
 
 Compilers / runtimes:
 
-* `golang 1.19.x`
+* `golang 1.20.x`
 * `openjdk 11`
 * `python 3.10`
 
