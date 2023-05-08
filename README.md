@@ -147,3 +147,9 @@ of binaries could be first in `$PATH`.
 ### Pre-commit hook
 
 To install the pre-commit hook, run `pre-commit install` from within the repository.
+
+### Remember to update the repository state
+
+If you're getting error such as `error: attribute 'whatever_new_version'
+missing` after bumping to a new version of a package, try running `nix flake
+update`.
