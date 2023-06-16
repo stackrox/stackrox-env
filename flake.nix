@@ -45,7 +45,7 @@
             pkgs-rocksdb.rocksdb
             pkgs.bats
             pkgs.gettext # Needed for `envsubst`
-            pkgs.google-cloud-sdk
+            (pkgs.google-cloud-sdk.withExtraComponents [ pkgs.google-cloud-sdk.components.gke-gcloud-auth-plugin ])
             pkgs.gradle
             pkgs.jdk11
             pkgs.nodejs
