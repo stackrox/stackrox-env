@@ -58,6 +58,10 @@
             pkgs.krb5 # Dependency of aws-saml.py
             pkgs.pre-commit
 
+            # stackrox/acs-fleet-manager-aws-config
+            pkgs.terraform
+            pkgs.terragrunt
+
             # openshift
             pkgs.ocm
             pkgs.openshift
