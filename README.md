@@ -8,6 +8,7 @@ Isolated and reproducible development environment for the Stackrox stack using N
 
 Compilers / runtimes:
 
+* `gcc`
 * `golang 1.20.x`
 * `openjdk 11`
 * `python 3.10`
@@ -20,11 +21,14 @@ Applications:
 
 * `aws` and `aws-vault`
 * `bats`
+* `bitwarden` CLI
 * Repo cleaner `bfg`
+* `cachix`
 * `chamber`
 * `colima` (macOS)
+* `detect-secrets`
 * `docker` (macOS)
-* `gcc`
+* `envsubst` (and other gettext utilities)
 * `gcloud`
 * `gradle`
 * `helm`
@@ -35,6 +39,9 @@ Applications:
 * `nodejs`
 * OpenShift Client `oc`
 * OpenShift Cluster Manager Client `ocm`
+* `pre-commit`
+* `terraform` and `terragrunt`
+* `vault`
 * `wget`
 * `yarn`
 * `yq`
