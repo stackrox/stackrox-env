@@ -61,6 +61,7 @@
             # stackrox/acs-fleet-manager-aws-config
             pkgs.terraform
             pkgs.terragrunt
+            pkgs.detect-secrets
 
             # openshift
             pkgs.ocm
