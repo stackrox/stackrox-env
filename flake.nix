@@ -50,6 +50,7 @@
             pkgs.jdk11
             pkgs.nodejs
             pkgs.yarn
+            pkgs.shellcheck
 
             # stackrox/acs-fleet-manager
             pkgs.aws-vault
