@@ -30,6 +30,7 @@ Applications:
 * `docker` (macOS)
 * `envsubst` (and other gettext utilities)
 * `gcloud`
+* `go-jsonnet` and bundler
 * `gradle`
 * `helm`
 * `jq`
@@ -40,6 +41,7 @@ Applications:
 * OpenShift Client `oc`
 * OpenShift Cluster Manager Client `ocm`
 * `pre-commit`
+* `prometheus`
 * `terraform` and `terragrunt`
 * `vault`
 * `wget`
