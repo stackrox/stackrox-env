@@ -43,6 +43,7 @@
           buildInputs = [
             # stackrox/stackrox
             pkgs-rocksdb.rocksdb
+            pkgs.postgresql
             pkgs.bats
             pkgs.gettext # Needed for `envsubst`
             (pkgs.google-cloud-sdk.withExtraComponents [ pkgs.google-cloud-sdk.components.gke-gcloud-auth-plugin ])
