@@ -49,6 +49,7 @@
             pkgs.gradle
             pkgs.jdk11
             pkgs.nodejs
+            pkgs.postgresql
             pkgs.yarn
             pkgs.shellcheck
 
