@@ -133,8 +133,9 @@ all packages and pushes them to the binary cache `stackrox.cachix.org`. Using th
 See this [guide](https://nix.dev/faq#how-do-i-add-a-new-binary-cache) on how to enable the cache.
 
 ```
-trusted-substituter: https://stackrox.cachix.org
-trusted-public-key: stackrox.cachix.org-1:Wnn8TKAitOTWKfTvvHiHzJjXy0YfiwoK6rrVzXt/trA=
+accept-flake-config = true
+trusted-substituters = https://stackrox.cachix.org https://cache.nixos.org/
+trusted-public-keys = stackrox.cachix.org-1:Wnn8TKAitOTWKfTvvHiHzJjXy0YfiwoK6rrVzXt/trA= cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY=
 ```
 
 Alternativley, run
