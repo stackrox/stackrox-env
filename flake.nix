@@ -27,7 +27,8 @@
         pkgs-rocksdb = import nixpkgs-rocksdb-6_15_5 { inherit system; };
         darwin-pkgs =
           if pkgs.stdenv.isDarwin then [
-            pkgs.darwin.apple_sdk_11_0.frameworks.Foundation
+            pkgs.darwin.apple_sdk.frameworks.Foundation
+            pkgs.clang
             pkgs.colima
             pkgs.docker
           ]
