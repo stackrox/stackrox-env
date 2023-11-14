@@ -62,7 +62,7 @@
             pkgs.pre-commit
 
             # stackrox/acs-fleet-manager-aws-config
-            pkgs.terraform
+            pkgs.opentofu
             pkgs.terragrunt
             pkgs.detect-secrets
 
