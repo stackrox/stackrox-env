@@ -76,7 +76,7 @@
             pkgs.cachix
             pkgs.gcc
             pkgs.gnumake
-            pkgs.go_1_20
+            pkgs.go
             pkgs.jq
             pkgs.jsonnet-bundler
             pkgs.go-jsonnet
