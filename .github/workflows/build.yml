@@ -21,7 +21,7 @@ jobs:
         uses: cachix/install-nix-action@v24
 
       - name: Setup binary cache
-        uses: cachix/cachix-action@v13
+        uses: cachix/cachix-action@v14
         with:
           name: stackrox
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
