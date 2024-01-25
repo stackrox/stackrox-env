@@ -34,6 +34,7 @@ Applications:
 * `gradle`
 * `helm`
 * `jq`
+* `k9s`
 * `kubectl`
 * `kubectx`
 * `make`
