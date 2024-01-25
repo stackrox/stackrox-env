@@ -79,6 +79,7 @@
             pkgs.jq
             pkgs.jsonnet-bundler
             pkgs.go-jsonnet
+            pkgs.k9s
             pkgs.kubectl
             pkgs.kubectx
             pkgs.kubernetes-helm
