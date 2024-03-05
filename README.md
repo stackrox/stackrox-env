@@ -43,8 +43,8 @@ Applications:
 * OpenShift Cluster Manager Client `ocm`
 * `pre-commit`
 * `prometheus`
-* `terraform` and `terragrunt`
-* `vault`
+* `terraform 1.5.7` (last MPL release) and `terragrunt`
+* `vault 1.14.8` (last MPL release)
 * `wget`
 * `yarn`
 * `yq`
