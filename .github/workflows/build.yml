@@ -31,6 +31,7 @@ jobs:
         uses: cachix/install-nix-action@v25
         with:
           extra_nix_config: |
+            accept-flake-config = true
             auto-optimise-store = true
 
       - name: Setup binary cache
