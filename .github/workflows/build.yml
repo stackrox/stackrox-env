@@ -14,11 +14,25 @@ jobs:
     runs-on: ${{ matrix.os }}
 
     steps:
+      - name: Free disk space
+        # https://github.com/actions/virtual-environments/issues/709
+        run: |
+          echo "========= Original CI disk space"
+          df -h
+          sudo rm -rf "/usr/local/share/boost"
+          sudo rm -rf "$AGENT_TOOLSDIRECTORY"
+          echo "========= After clean up CI disk space"
+          df -h
+
       - name: Check out repository
         uses: actions/checkout@v4.1.1
 
       - name: Install Nix
         uses: cachix/install-nix-action@v25
+        with:
+          extra_nix_config: |
+            accept-flake-config = true
+            auto-optimise-store = true
 
       - name: Setup binary cache
         uses: cachix/cachix-action@v14

@@ -6,25 +6,30 @@
       "https://stackrox.cachix.org"
       "https://cache.nixos.org"
       "https://nix-community.cachix.org"
+      "https://nixpkgs-terraform.cachix.org"
     ];
     trusted-public-keys = [
       "stackrox.cachix.org-1:Wnn8TKAitOTWKfTvvHiHzJjXy0YfiwoK6rrVzXt/trA="
       "cache.nixos.org-1:6NCHdD59X431o0gWypbMrAURkbJ16ZPMQFGspcDShjY="
       "nix-community.cachix.org-1:mB9FSh9qf2dCimDSUo8Zy7bkq5CX+/rkCWyvRCYg3Fs="
+      "nixpkgs-terraform.cachix.org-1:8Sit092rIdAVENA3ZVeH9hzSiqI/jng6JiCrQ1Dmusw="
     ];
   };
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixpkgs-rocksdb-6_15_5.url = "github:nixos/nixpkgs/a765beccb52f30a30fee313fbae483693ffe200d";
+    nixpkgs-terraform.url = "github:stackbuilders/nixpkgs-terraform";
     flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-rocksdb-6_15_5, flake-utils }:
+  outputs = { self, nixpkgs, nixpkgs-rocksdb-6_15_5, nixpkgs-terraform, flake-utils }:
     flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = import nixpkgs { inherit system; };
+        custom = import ./pkgs { inherit pkgs; };
         pkgs-rocksdb = import nixpkgs-rocksdb-6_15_5 { inherit system; };
+        terraform = nixpkgs-terraform.packages.${system}."1.5.7";
         darwin-pkgs =
           if pkgs.stdenv.isDarwin then [
             pkgs.colima
@@ -61,7 +66,7 @@
             pkgs.pre-commit
 
             # stackrox/acs-fleet-manager-aws-config
-            pkgs.terraform
+            terraform
             pkgs.terragrunt
             pkgs.detect-secrets
 
@@ -84,7 +89,7 @@
             pkgs.kubectx
             pkgs.kubernetes-helm
             pkgs.prometheus
-            pkgs.vault
+            custom.vault
             pkgs.wget
             pkgs.yq-go
             stackrox-python
