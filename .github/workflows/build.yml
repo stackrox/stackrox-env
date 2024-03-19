@@ -41,4 +41,4 @@ jobs:
           authToken: "${{ secrets.CACHIX_AUTH_TOKEN }}"
 
       - name: Build dev environment
-        run: nix develop
+        run: nix develop --fallback
