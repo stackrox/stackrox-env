@@ -35,6 +35,7 @@ Applications:
 * `helm`
 * `jq`
 * `k9s`
+* `kind`
 * `kubectl`
 * `kubectx`
 * `make`
