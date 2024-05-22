@@ -18,17 +18,15 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    nixpkgs-rocksdb-6_15_5.url = "github:nixos/nixpkgs/a765beccb52f30a30fee313fbae483693ffe200d";
     nixpkgs-terraform.url = "github:stackbuilders/nixpkgs-terraform";
     flake-utils.url = "github:numtide/flake-utils";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-rocksdb-6_15_5, nixpkgs-terraform, flake-utils }:
+  outputs = { self, nixpkgs, nixpkgs-terraform, flake-utils }:
     flake-utils.lib.eachDefaultSystem (system:
       let
         pkgs = import nixpkgs { inherit system; };
         custom = import ./pkgs { inherit pkgs; };
-        pkgs-rocksdb = import nixpkgs-rocksdb-6_15_5 { inherit system; };
         terraform = nixpkgs-terraform.packages.${system}."1.5.7";
         darwin-pkgs =
           if pkgs.stdenv.isDarwin then [
@@ -47,7 +45,6 @@
         devShell = pkgs.mkShell {
           buildInputs = [
             # stackrox/stackrox
-            pkgs-rocksdb.rocksdb
             pkgs.bats
             pkgs.gettext # Needed for `envsubst`
             (pkgs.google-cloud-sdk.withExtraComponents [ pkgs.google-cloud-sdk.components.gke-gcloud-auth-plugin ])
