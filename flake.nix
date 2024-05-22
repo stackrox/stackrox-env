@@ -19,80 +19,134 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixpkgs-terraform.url = "github:stackbuilders/nixpkgs-terraform";
-    flake-utils.url = "github:numtide/flake-utils";
+    flake-parts.url = "github:hercules-ci/flake-parts";
   };
 
-  outputs = { self, nixpkgs, nixpkgs-terraform, flake-utils }:
-    flake-utils.lib.eachDefaultSystem (system:
-      let
-        pkgs = import nixpkgs { inherit system; };
-        custom = import ./pkgs { inherit pkgs; };
-        terraform = nixpkgs-terraform.packages.${system}."1.5.7";
-        darwin-pkgs =
-          if pkgs.stdenv.isDarwin then [
-            pkgs.colima
-            pkgs.docker
-          ]
-          else [ ];
-        # Add Python packages here.
-        python-packages = ps: [
-          ps.python-ldap # Dependency of aws-saml.py
-          ps.pyyaml
-        ];
-        stackrox-python = pkgs.python3.withPackages python-packages;
-      in
-      {
-        devShell = pkgs.mkShell {
-          buildInputs = [
-            # stackrox/stackrox
-            pkgs.bats
-            pkgs.gettext # Needed for `envsubst`
-            (pkgs.google-cloud-sdk.withExtraComponents [ pkgs.google-cloud-sdk.components.gke-gcloud-auth-plugin ])
-            pkgs.gradle
-            pkgs.jdk11
-            pkgs.nodejs
-            pkgs.postgresql
-            pkgs.yarn
-            pkgs.shellcheck
+  outputs = inputs @ { flake-parts, ... }:
+    flake-parts.lib.mkFlake { inherit inputs; } ({ withSystem, ... }: {
+      systems = inputs.nixpkgs.lib.systems.flakeExposed;
 
-            # stackrox/acs-fleet-manager
-            pkgs.aws-vault
-            pkgs.awscli2
-            pkgs.chamber
-            pkgs.krb5 # Dependency of aws-saml.py
-            pkgs.pre-commit
+      imports = [
+        flake-parts.flakeModules.easyOverlay
+      ];
 
-            # stackrox/acs-fleet-manager-aws-config
-            terraform
-            pkgs.terragrunt
-            pkgs.detect-secrets
+      perSystem =
+        { config
+        , pkgs
+        , system
+        , ...
+        }:
+        let
+          # Pinned packages.
+          custom = import ./pkgs { inherit pkgs; };
+          terraform = inputs.nixpkgs-terraform.packages.${system}."1.5.7";
 
-            # openshift
-            pkgs.ocm
-            pkgs.openshift
+          # Add Darwin packages here.
+          darwin-pkgs =
+            if pkgs.stdenv.isDarwin
+            then {
+              inherit
+                (pkgs)
+                colima
+                docker
+                ;
+            }
+            else { };
 
-            # misc
-            pkgs.bfg-repo-cleaner
-            pkgs.bitwarden-cli
-            pkgs.cachix
-            pkgs.gcc
-            pkgs.gnumake
-            pkgs.go_1_21
-            pkgs.jq
-            pkgs.jsonnet-bundler
-            pkgs.go-jsonnet
-            pkgs.k9s
-            pkgs.kind
-            pkgs.kubectl
-            pkgs.kubectx
-            pkgs.kubernetes-helm
-            pkgs.prometheus
-            custom.vault
-            pkgs.wget
-            pkgs.yq-go
-            stackrox-python
-          ] ++ darwin-pkgs;
+          # Add Python packages here.
+          python-pkgs = ps: [
+            ps.python-ldap # Dependency of aws-saml.py
+            ps.pyyaml
+          ];
+        in
+        {
+          packages =
+            {
+              # stackrox/stackrox
+              inherit
+                (pkgs)
+                bats
+                gettext# Needed for `envsubst`
+                gradle
+                jdk11
+                nodejs
+                postgresql
+                shellcheck
+                yarn
+                ;
+              google-cloud-sdk = pkgs.google-cloud-sdk.withExtraComponents [
+                pkgs.google-cloud-sdk.components.gke-gcloud-auth-plugin
+              ];
+
+              # stackrox/acs-fleet-manager
+              inherit
+                (pkgs)
+                aws-vault
+                awscli2
+                chamber
+                krb5# Dependency of aws-saml.py
+                pre-commit
+                ;
+
+              # stackrox/acs-fleet-manager-aws-config
+              inherit terraform;
+              inherit
+                (pkgs)
+                terragrunt
+                detect-secrets
+                ;
+
+              # openshift
+              inherit
+                (pkgs)
+                ocm
+                openshift
+                ;
+
+              # misc
+              inherit (custom) vault;
+              inherit
+                (pkgs)
+                bfg-repo-cleaner
+                bitwarden-cli
+                cachix
+                gcc
+                gnumake
+                jq
+                jsonnet-bundler
+                k9s
+                kind
+                kubectl
+                kubectx
+                prometheus
+                wget
+                ;
+              go = pkgs.go_1_21;
+              helm = pkgs.kubernetes-helm;
+              jsonnet = pkgs.go-jsonnet;
+              python = pkgs.python3.withPackages python-pkgs;
+              yq = pkgs.yq-go;
+            }
+            // darwin-pkgs;
+          devShells = {
+            default = pkgs.mkShell {
+              buildInputs = builtins.attrValues config.packages;
+            };
+          };
+          overlayAttrs = config.packages;
         };
-      }
-    );
+
+      flake = {
+        overlays.hashicorp = _: prev:
+          withSystem prev.stdenv.hostPlatform.system (
+            { config, ... }: {
+              inherit
+                (config.packages)
+                terraform
+                vault
+                ;
+            }
+          );
+      };
+    });
 }

@@ -93,6 +93,49 @@ from the command line.
 - Create a `.envrc` file inside the `stackrox/stackrox` directory and add `use flake github:stackrox/stackrox-env` to it.
   Alternatively, add `use flake ~/dev/nix/stackrox/` to use a local clone of the repository.
 
+### Import from other flakes
+
+You can compose Nix flakes by importing the `stackrox-env` flake from other Nix flakes. This allows you to
+integrate the flake into a larger user configuration management, for example via `Home Manager`.
+
+Overlay all packages - note that you still have to declare individual packages in your package configuration.
+
+```nix
+inputs = {
+  nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+  stackrox-env = {
+    url = "github:stackrox/stackrox-env";
+    inputs.nixpkgs.follows = "nixpkgs";
+  };
+};
+
+inputs @ {self, ...}: {
+  # ...
+  overlays = {
+    stackrox-overlay = inputs.stackrox-env.overlays.default;
+  };
+}
+```
+
+Overlay only pinned Hashicorp packages
+
+```nix
+inputs = {
+  nixpkgs.url = "github:NixOS/nixpkgs/nixpkgs-unstable";
+  stackrox-env = {
+    url = "github:stackrox/stackrox-env";
+    inputs.nixpkgs.follows = "nixpkgs";
+  };
+};
+
+inputs @ {self, ...}: {
+  # ...
+  overlays = {
+    stackrox-overlay = inputs.stackrox-env.overlays.hashicorp;
+  };
+}
+```
+
 ## Platforms
 
 The Nix flake is tested via continuous integration on Linux and macOS (Intel). Unfortunately, GitHub does not provide
