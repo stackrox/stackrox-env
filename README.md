@@ -9,7 +9,7 @@ Isolated and reproducible development environment for the Stackrox stack using N
 Compilers / runtimes:
 
 * `gcc`
-* `golang 1.21.x`
+* `golang 1.22.x`
 * `openjdk 11`
 * `python 3.10`
 
@@ -28,9 +28,11 @@ Applications:
 * `colima` (macOS)
 * `detect-secrets`
 * `docker` (macOS)
+* `docker-buildx`
 * `envsubst` (and other gettext utilities)
 * `gcloud`
 * `go-jsonnet` and bundler
+* `goreleaser`
 * `gradle`
 * `helm`
 * `jq`
