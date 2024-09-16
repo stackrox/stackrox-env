@@ -110,8 +110,10 @@
                 bfg-repo-cleaner
                 bitwarden-cli
                 cachix
+                docker-buildx
                 gcc
                 gnumake
+                goreleaser
                 jq
                 jsonnet-bundler
                 k9s
@@ -121,7 +123,7 @@
                 prometheus
                 wget
                 ;
-              go = pkgs.go_1_21;
+              go = pkgs.go_1_22;
               helm = pkgs.kubernetes-helm;
               jsonnet = pkgs.go-jsonnet;
               python = pkgs.python3.withPackages python-pkgs;
