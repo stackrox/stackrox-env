@@ -210,3 +210,13 @@ To install the pre-commit hook, run `pre-commit install` from within the reposit
 If you're getting error such as `error: attribute 'whatever_new_version'
 missing` after bumping to a new version of a package, try running `nix flake
 update`.
+
+### Updating isolated packages
+
+To only update an isolated package - for example, to bump the golang version without touching other packages - follow these steps:
+
+1. Add a dedicated `nixpkgs-my-package` input based on `nixpkgs-unstable`.
+2. Run `nix flake update nixpkgs-my-package`.
+3. Import your package from `inputs.nixpkgs-my-package` in the package list.
+
+For an explicit example, see this [pull request](https://github.com/stackrox/stackrox-env/pull/74).
