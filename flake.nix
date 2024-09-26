@@ -18,6 +18,7 @@
 
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs-golang.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixpkgs-terraform.url = "github:stackbuilders/nixpkgs-terraform";
     flake-parts.url = "github:hercules-ci/flake-parts";
   };
@@ -39,6 +40,7 @@
         let
           # Pinned packages.
           custom = import ./pkgs { inherit pkgs; };
+          golang = (import inputs.nixpkgs-golang { inherit system; }).go_1_22;
           terraform = inputs.nixpkgs-terraform.packages.${system}."1.5.7";
 
           # Add Darwin packages here.
@@ -123,7 +125,7 @@
                 prometheus
                 wget
                 ;
-              go = pkgs.go_1_22;
+              go = golang;
               helm = pkgs.kubernetes-helm;
               jsonnet = pkgs.go-jsonnet;
               python = pkgs.python3.withPackages python-pkgs;
