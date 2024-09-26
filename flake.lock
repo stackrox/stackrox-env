@@ -69,6 +69,22 @@
         "type": "github"
       }
     },
+    "nixpkgs-golang": {
+      "locked": {
+        "lastModified": 1727266098,
+        "narHash": "sha256-AHTKbJ9ffR7Nx+XcR2XP0AYLI4OlUh2IGh4SAkdG5Ig=",
+        "owner": "nixos",
+        "repo": "nixpkgs",
+        "rev": "4f31540079322e6013930b5b2563fd10f96917f0",
+        "type": "github"
+      },
+      "original": {
+        "owner": "nixos",
+        "ref": "nixpkgs-unstable",
+        "repo": "nixpkgs",
+        "type": "github"
+      }
+    },
     "nixpkgs-lib": {
       "locked": {
         "lastModified": 1714640452,
@@ -157,6 +173,7 @@
       "inputs": {
         "flake-parts": "flake-parts",
         "nixpkgs": "nixpkgs",
+        "nixpkgs-golang": "nixpkgs-golang",
         "nixpkgs-terraform": "nixpkgs-terraform"
       }
     },
