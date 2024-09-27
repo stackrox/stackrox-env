@@ -11,11 +11,7 @@ Compilers / runtimes:
 * `gcc`
 * `golang 1.22.x`
 * `openjdk 11`
-* `python 3.10`
-
-Libraries:
-
-* `rocksdb 6.15.5`
+* `python 3.11`
 
 Applications:
 
