@@ -19,6 +19,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixpkgs-golang.url = "github:nixos/nixpkgs/nixpkgs-unstable";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/release-24.05";
     nixpkgs-terraform.url = "github:stackbuilders/nixpkgs-terraform";
     flake-parts.url = "github:hercules-ci/flake-parts";
   };
@@ -39,6 +40,7 @@
         }:
         let
           # Pinned packages.
+          bitwarden = inputs.nixpkgs-stable.pkgs.bitwarden-cli;
           custom = import ./pkgs { inherit pkgs; };
           golang = (import inputs.nixpkgs-golang { inherit system; }).go_1_22;
           terraform = inputs.nixpkgs-terraform.packages.${system}."1.5.7";
@@ -110,7 +112,6 @@
               inherit
                 (pkgs)
                 bfg-repo-cleaner
-                bitwarden-cli
                 cachix
                 docker-buildx
                 gcc
@@ -128,7 +129,7 @@
               go = golang;
               helm = pkgs.kubernetes-helm;
               jsonnet = pkgs.go-jsonnet;
-              python = pkgs.python3.withPackages python-pkgs;
+              python = pkgs.python311.withPackages python-pkgs;
               yq = pkgs.yq-go;
             }
             // darwin-pkgs;
