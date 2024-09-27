@@ -40,9 +40,9 @@
         }:
         let
           # Pinned packages.
-          bitwarden = inputs.nixpkgs-stable.pkgs.bitwarden-cli;
           custom = import ./pkgs { inherit pkgs; };
           golang = (import inputs.nixpkgs-golang { inherit system; }).go_1_22;
+          stable = import inputs.nixpkgs-stable { inherit system; };
           terraform = inputs.nixpkgs-terraform.packages.${system}."1.5.7";
 
           # Add Darwin packages here.
@@ -126,6 +126,7 @@
                 prometheus
                 wget
                 ;
+              inherit (stable) bitwarden-cli;
               go = golang;
               helm = pkgs.kubernetes-helm;
               jsonnet = pkgs.go-jsonnet;
