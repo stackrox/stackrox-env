@@ -115,6 +115,7 @@
                 cachix
                 docker-buildx
                 gcc
+                git-absorb
                 gnumake
                 goreleaser
                 jq

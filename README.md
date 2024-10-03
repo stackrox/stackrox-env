@@ -27,6 +27,7 @@ Applications:
 * `docker-buildx`
 * `envsubst` (and other gettext utilities)
 * `gcloud`
+* `git-absorb`
 * `go-jsonnet` and bundler
 * `goreleaser`
 * `gradle`
