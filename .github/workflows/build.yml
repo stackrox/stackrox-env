@@ -25,7 +25,7 @@ jobs:
           df -h
 
       - name: Check out repository
-        uses: actions/checkout@v4.2.1
+        uses: actions/checkout@v4.2.2
 
       - name: Install Nix
         uses: cachix/install-nix-action@v30
