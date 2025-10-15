@@ -19,7 +19,7 @@
   inputs = {
     nixpkgs.url = "github:nixos/nixpkgs/nixpkgs-unstable";
     nixpkgs-golang.url = "github:nixos/nixpkgs/nixpkgs-unstable";
-    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-24.05";
+    nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
     nixpkgs-terraform.url = "github:stackbuilders/nixpkgs-terraform";
     flake-parts.url = "github:hercules-ci/flake-parts";
   };
@@ -41,7 +41,7 @@
         let
           # Pinned packages.
           custom = import ./pkgs { inherit pkgs; };
-          golang = (import inputs.nixpkgs-golang { inherit system; }).go_1_22;
+          golang = (import inputs.nixpkgs-golang { inherit system; }).go_1_24;
           stable = import inputs.nixpkgs-stable { inherit system; };
           terraform = inputs.nixpkgs-terraform.packages.${system}."1.5.7";
 
@@ -67,9 +67,10 @@
           packages =
             {
               # stackrox/stackrox
+              inherit (stable)
+                bats;
               inherit
                 (pkgs)
-                bats
                 gettext# Needed for `envsubst`
                 gradle
                 jdk11
@@ -127,7 +128,7 @@
                 prometheus
                 wget
                 ;
-              inherit (stable) bitwarden-cli;
+              inherit (pkgs) bitwarden-cli;
               go = golang;
               helm = pkgs.kubernetes-helm;
               jsonnet = pkgs.go-jsonnet;
