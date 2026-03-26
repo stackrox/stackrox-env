@@ -41,9 +41,9 @@
         let
           # Pinned packages.
           custom = import ./pkgs { inherit pkgs; };
-          golang = (import inputs.nixpkgs-golang { inherit system; }).go_1_22;
+          golang = (import inputs.nixpkgs-golang { inherit system; }).go_1_26;
           stable = import inputs.nixpkgs-stable { inherit system; };
-          terraform = inputs.nixpkgs-terraform.packages.${system}."1.5.7";
+          terraform = inputs.nixpkgs-terraform.packages.${system}."terraform-1.5.7";
 
           # Add Darwin packages here.
           darwin-pkgs =
