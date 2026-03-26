@@ -59,7 +59,8 @@
 
           # Add Python packages here.
           python-pkgs = ps: [
-            ps.python-ldap # Dependency of aws-saml.py
+            # Dependency of aws-saml.py; tests require slapd which fails in Nix sandbox.
+            (ps.python-ldap.overridePythonAttrs (_: { doCheck = false; }))
             ps.pyyaml
           ];
         in
