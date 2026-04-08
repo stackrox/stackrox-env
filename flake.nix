@@ -119,6 +119,8 @@
                 git-absorb
                 gnumake
                 goreleaser
+                gum
+                jira-cli-go
                 jq
                 jsonnet-bundler
                 k9s
