@@ -31,8 +31,10 @@ Applications:
 * `go-jsonnet` and bundler
 * `goreleaser`
 * `gradle`
+* `gum`
 * `helm`
 * `jq`
+* [`jira`](https://github.com/ankitpokhrel/jira-cli/)
 * `k9s`
 * `kind`
 * `kubectl`
