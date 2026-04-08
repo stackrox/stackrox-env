@@ -22,6 +22,7 @@
     nixpkgs-stable.url = "github:nixos/nixpkgs/nixos-25.05";
     nixpkgs-terraform.url = "github:stackbuilders/nixpkgs-terraform";
     flake-parts.url = "github:hercules-ci/flake-parts";
+    llm-agents.url = "github:numtide/llm-agents.nix";
   };
 
   outputs = inputs @ { flake-parts, ... }:
@@ -44,6 +45,7 @@
           golang = (import inputs.nixpkgs-golang { inherit system; }).go_1_26;
           stable = import inputs.nixpkgs-stable { inherit system; };
           terraform = inputs.nixpkgs-terraform.packages.${system}."terraform-1.5.7";
+          llms = inputs.llm-agents.packages.${system};
 
           # Add Darwin packages here.
           darwin-pkgs =
@@ -131,6 +133,7 @@
                 wget
                 ;
               inherit (stable) bitwarden-cli;
+              inherit (llms) claude-code coderabbit-cli;
               go = golang;
               helm = pkgs.kubernetes-helm;
               jsonnet = pkgs.go-jsonnet;

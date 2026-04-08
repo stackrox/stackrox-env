@@ -21,6 +21,8 @@ Applications:
 * Repo cleaner `bfg`
 * `cachix`
 * `chamber`
+* `Claude Code (`claude`)
+* `coderabbit` CLI
 * `colima` (macOS)
 * `detect-secrets`
 * `docker` (macOS)
