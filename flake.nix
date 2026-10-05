@@ -131,10 +131,9 @@
                 kind
                 kubectl
                 kubectx
-                prometheus
                 wget
                 ;
-              inherit (stable) bitwarden-cli;
+              inherit (stable) bitwarden-cli prometheus;
               inherit (llms) claude-code coderabbit-cli;
               go = golang;
               helm = pkgs.kubernetes-helm;
