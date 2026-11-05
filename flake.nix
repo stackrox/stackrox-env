@@ -77,7 +77,7 @@
                 bats
                 gettext# Needed for `envsubst`
                 gradle
-                jdk11
+                jdk17
                 nodejs
                 postgresql
                 shellcheck
