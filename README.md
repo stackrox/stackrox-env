@@ -10,7 +10,7 @@ Compilers / runtimes:
 
 * `gcc`
 * `golang 1.26.x`
-* `openjdk 11`
+* `openjdk 17`
 * `python 3.11`
 
 Applications:
